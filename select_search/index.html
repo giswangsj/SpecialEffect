@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>带搜索框的jQuery下拉框美化插件 searchableSelect</title>
+    <link href="css/jquery.searchableSelect.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery.searchableSelect.js"></script>
+</head>
+<body>
+<div>
+    <div style="display: inline-block">
+        <select id="selector">
+            <option value="-1">请选择</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block">
+        <select id="selector2">
+            <option value="-1">请选择</option>
+        </select>
+    </div>
+
+</div>
+
+<script>
+
+    $(function () {
+        $('#selector').searchableSelect();
+        $('#selector2').searchableSelect();
+    });
+
+    for (let i = 0; i < 20; i++) {
+        $("#selector").append("<option value='" + i + "'>" + i + "</option>");
+    }
+
+    $("#selector").change(function () {
+        _id = $("#selector").val();
+        console.log("第一个：" + _id);
+        $("#selector2").empty();
+        $("#selector2").append("<option value='-1'>请选择</option>");
+
+        for (let i = 0; i < 10; i++) {
+            $("#selector2").append("<option value='" + _id + i + "'>" + _id + i + "</option>");
+        }
+        $('#selector2').searchableSelect();
+    });
+
+    $("#selector2").change(function () {
+        _id = $("#selector2").val();
+        if(_id!=-1){
+            console.log("第二个：" + _id);
+        }
+    });
+
+</script>
+</body>
+</html>

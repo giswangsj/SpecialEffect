@@ -211,25 +211,6 @@
             return this.currentSelectedItem && this.currentSelectedItem.length > 0;
         },
 
-        selectItem: function (item) {
-            if (this.hasCurrentSelectedItem())
-                this.currentSelectedItem.removeClass('selected');
-
-            this.currentSelectedItem = item;
-            item.addClass('selected');
-
-            this.hoverItem(item);
-
-            this.holder.text(item.text());
-            var value = item.data('value');
-            this.holder.data('value', value);
-            this.element.val(value);
-
-            if (this.options.afterSelectItem) {
-                this.options.afterSelectItem.apply(this);
-            }
-        },
-
         hasCurrentHoverItem: function () {
             return this.currentHoverItem && this.currentHoverItem.length > 0;
         },

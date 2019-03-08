@@ -20,7 +20,7 @@ Date: 2014-11-05
 }
 
 .searchable-select-holder{
-  padding: 6px;
+  padding: 6px 24px 6px 6px;
   background-color: #fff;
   background-image: none;
   border: 1px solid #ccc;

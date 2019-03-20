@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.js"></script>
+
+    <style>
+        .main {
+            width: 1000px;
+            margin: 0 auto;
+        }
+    </style>
+
+    <script>
+        function ctrl() {
+            var myVideo = document.getElementById("video");
+            console.log(myVideo.currentTime);
+            myVideo.currentTime = 10;
+            console.log(myVideo.currentTime);
+        }
+
+        $(function () {
+            var myVideo = document.getElementById("mVideo");
+            myVideo.ontimeupdate = function () {
+                // console.log("总长度：" + myVideo.duration + "当前进度：" + myVideo.currentTime)
+                $('#video_info').text("总长度：" + myVideo.duration + " 当前进度：" + myVideo.currentTime)
+            };
+
+            $('#ctrl').click(function () {
+                myVideo.currentTime = 10;
+            });
+
+            $('#back').click(function () {
+                myVideo.currentTime = myVideo.currentTime - 2;
+            });
+
+            $('#forward').click(function () {
+                myVideo.currentTime = myVideo.currentTime + 2;
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div class="main">
+    <video id="mVideo" width="640" height="480" controls>
+        <source src="https://vod.xyztree.com/4337d4ca925d414abbd3a193dc85a8c1/9e090d776d4947fcac15a49a769c6627-4cf74f89728498cefbe65d78e945caf6-sd.mp4?auth_key=1553068995-30801551a26a4d7e91c8a3aada0c5779-0-2fb8728615358aa787fd132cc05d92bf"
+                type="video/mp4">
+    </video>
+
+    <div>
+        <button type="button" id="ctrl">控制</button>
+        <button type="button" id="back">倒退</button>
+        <button type="button" id="forward">前进</button>
+    </div>
+
+    <p id="video_info">总长度：-- 当前进度：--</p>
+</div>
+</body>
+</html>

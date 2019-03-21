@@ -2,209 +2,68 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>瀑布流</title>
-    <style type="text/css">
-        /* 标签重定义 */
-        body {
-            padding: 0;
-            margin: 0;
-            background: #ddd url(img/bg.jpg) repeat;
-        }
-
-        img {
-            border: none;
-        }
-
-        a {
-            text-decoration: none;
-            color: #444;
-        }
-
-        a:hover {
-            color: #999;
-        }
-
-        #title {
-            width: 600px;
-            margin: 20px auto;
-            text-align: center;
-        }
-
-        /* 定义关键帧 */
-        @-webkit-keyframes shade {
-            from {
-                opacity: 1;
-            }
-            15% {
-                opacity: 0.4;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @-moz-keyframes shade {
-            from {
-                opacity: 1;
-            }
-            15% {
-                opacity: 0.4;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @-ms-keyframes shade {
-            from {
-                opacity: 1;
-            }
-            15% {
-                opacity: 0.4;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @-o-keyframes shade {
-            from {
-                opacity: 1;
-            }
-            15% {
-                opacity: 0.4;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes shade {
-            from {
-                opacity: 1;
-            }
-            15% {
-                opacity: 0.4;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* wrap */
-        #wrap {
-            width: auto;
-            height: auto;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        #wrap .box {
-            width: 280px;
-            height: auto;
-            padding: 10px;
-            border: none;
-            float: left;
-        }
-
-        #wrap .box .info {
-            width: 280px;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 0 11px #666;
-            background: #fff;
-        }
-
-        #wrap .box .info .pic {
-            width: 260px;
-            height: auto;
-            margin: 0 auto;
-            padding-top: 10px;
-        }
-
-        #wrap .box .info .pic:hover {
-            -webkit-animation: shade 3s ease-in-out 1;
-            -moz-animation: shade 3s ease-in-out 1;
-            -ms-animation: shade 3s ease-in-out 1;
-            -o-animation: shade 3s ease-in-out 1;
-            animation: shade 3s ease-in-out 1;
-        }
-
-        #wrap .box .info .pic img {
-            width: 260px;
-            border-radius: 3px;
-        }
-
-        #wrap .box .info .title {
-            width: 260px;
-            height: 40px;
-            margin: 0 auto;
-            line-height: 40px;
-            text-align: center;
-            color: #666;
-            font-size: 18px;
-            font-weight: bold;
-            overflow: hidden;
-        }
-    </style>
-
+    <link rel="stylesheet" href="css/welfare.css"/>
+    <title>福利来了</title>
 
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript">
+        //模拟数据
+        var data = [];
+        for (var i = 0; i < 10; i++) {
+            var img = i + 1 + ".jpg";
+            var item = {
+                'src': img,
+                'title': '重点在这里'
+            };
+            data.push(item);
+        }
+
         window.onload = function () {
             //运行瀑布流主函数
             PBL('wrap', 'box');
-
-            //模拟数据
-            var data = [{'src': '1.jpg', 'title': 'This is a title.'}, {
-                'src': '2.jpg',
-                'title': 'This is a title.'
-            }, {'src': '3.jpg', 'title': 'This is a title.'}, {
-                'src': '4.jpg',
-                'title': 'This is a title.'
-            }, {'src': '5.jpg', 'title': 'This is a title.'}, {
-                'src': '6.jpg',
-                'title': 'This is a title.'
-            }, {'src': '7.jpg', 'title': 'This is a title.'}, {
-                'src': '8.jpg',
-                'title': 'This is a title.'
-            }, {'src': '9.jpg', 'title': 'This is a title.'}, {'src': '10.jpg', 'title': 'This is a title.'}];
-
 
             //设置滚动加载
             window.onscroll = function () {
                 //校验数据请求
                 if (getCheck()) {
-                    var wrap = document.getElementById('wrap');
-                    for (i in data) {
-                        //创建box
-                        var box = document.createElement('div');
-                        box.className = 'box';
-                        wrap.appendChild(box);
-                        //创建info
-                        var info = document.createElement('div');
-                        info.className = 'info';
-                        box.appendChild(info);
-                        //创建pic
-                        var pic = document.createElement('div');
-                        pic.className = 'pic';
-                        info.appendChild(pic);
-                        //创建img
-                        var img = document.createElement('img');
-                        img.src = 'images/' + data[i].src;
-                        img.style.height = 'auto';
-                        pic.appendChild(img);
-                        //创建title
-                        var title = document.createElement('div');
-                        title.className = 'title';
-                        info.appendChild(title);
-                        //创建a标记
-                        var a = document.createElement('a');
-                        a.innerHTML = data[i].title;
-                        title.appendChild(a);
-                    }
+                    showData();
+                    //运行瀑布流主函数
                     PBL('wrap', 'box');
                 }
+            }
+        };
+
+        // 展示数据
+        function showData() {
+            var wrap = document.getElementById('wrap');
+            for (i in data) {
+                //创建box
+                var box = document.createElement('div');
+                box.className = 'box';
+                wrap.appendChild(box);
+                //创建info
+                var info = document.createElement('div');
+                info.className = 'info';
+                box.appendChild(info);
+                //创建pic
+                var pic = document.createElement('div');
+                pic.className = 'pic';
+                info.appendChild(pic);
+                //创建img
+                var img = document.createElement('img');
+                img.src = 'img/' + data[i].src;
+                img.style.height = 'auto';
+                pic.appendChild(img);
+                //创建title
+                var title = document.createElement('div');
+                title.className = 'title';
+                info.appendChild(title);
+                //创建a标记
+                var a = document.createElement('a');
+                a.innerHTML = data[i].title;
+                a.setAttribute('href','freeDoor.html');
+                a.setAttribute('target','_blank');
+                title.appendChild(a);
             }
         }
 
@@ -287,7 +146,7 @@
          * @param  left    [Num] box的left值
          * @param  index [Num] box的第几个
          */
-        var getStartNum = 0;//设置请求加载的条数的位置
+        let getStartNum = 0;//设置请求加载的条数的位置
         function getStyle(box, top, left, index) {
             if (getStartNum >= index) return;
             $(box).css({
@@ -301,6 +160,16 @@
             }, 999);
             getStartNum = index;//更新请求数据的条数位置
         }
+
+        window.onbeforeunload = function () {
+            alert("===onbeforeunload===");
+            if (event.clientX > document.body.clientWidth && event.clientY < 0 || event.altKey) {
+                alert("你关闭了浏览器");
+            } else {
+                alert("你正在刷新页面");
+            }
+        };
+
     </script>
 
 
@@ -318,70 +187,70 @@
     <div class="box">
         <div class="info">
             <div class="pic"><img src="img/1.jpg"></div>
-            <div class="title"><a href="#">This is a title.</a></div>
+            <div class="title"><a href="freeDoor.html" target="_blank">重点在这里</a></div>
         </div>
     </div>
 
     <div class="box">
         <div class="info">
             <div class="pic"><img src="img/2.jpg"></div>
-            <div class="title"><a href="#">This is a title.</a></div>
+            <div class="title"><a href="freeDoor.html" target="_blank">This is a title.</a></div>
         </div>
     </div>
 
     <div class="box">
         <div class="info">
             <div class="pic"><img src="img/3.jpg"></div>
-            <div class="title"><a href="#">This is a title.</a></div>
+            <div class="title"><a href="freeDoor.html" target="_blank">This is a title.</a></div>
         </div>
     </div>
 
     <div class="box">
         <div class="info">
             <div class="pic"><img src="img/4.jpg"></div>
-            <div class="title"><a href="#">This is a title.</a></div>
+            <div class="title"><a href="freeDoor.html" target="_blank">This is a title.</a></div>
         </div>
     </div>
 
     <div class="box">
         <div class="info">
             <div class="pic"><img src="img/5.jpg"></div>
-            <div class="title"><a href="#">This is a title.</a></div>
+            <div class="title"><a href="freeDoor.html" target="_blank">This is a title.</a></div>
         </div>
     </div>
 
     <div class="box">
         <div class="info">
             <div class="pic"><img src="img/6.jpg"></div>
-            <div class="title"><a href="#">This is a title.</a></div>
+            <div class="title"><a href="freeDoor.html" target="_blank">This is a title.</a></div>
         </div>
     </div>
 
     <div class="box">
         <div class="info">
             <div class="pic"><img src="img/7.jpg"></div>
-            <div class="title"><a href="#">This is a title.</a></div>
+            <div class="title"><a href="freeDoor.html" target="_blank">This is a title.</a></div>
         </div>
     </div>
 
     <div class="box">
         <div class="info">
             <div class="pic"><img src="img/8.jpg"></div>
-            <div class="title"><a href="#">This is a title.</a></div>
+            <div class="title"><a href="freeDoor.html" target="_blank">This is a title.</a></div>
         </div>
     </div>
 
     <div class="box">
         <div class="info">
             <div class="pic"><img src="img/9.jpg"></div>
-            <div class="title"><a href="#">This is a title.</a></div>
+            <div class="title"><a href="freeDoor.html" target="_blank">This is a title.</a></div>
         </div>
     </div>
 
     <div class="box">
         <div class="info">
             <div class="pic"><img src="img/10.jpg"></div>
-            <div class="title"><a href="#">This is a title.</a></div>
+            <div class="title"><a href="freeDoor.html" target="_blank">This is a title.</a></div>
         </div>
     </div>
 

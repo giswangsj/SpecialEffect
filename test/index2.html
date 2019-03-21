@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html, body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .main {
+        width: 100%;
+        height: 100%;
+        /*padding-left: 200px;*/
+        box-sizing: border-box;
+        display: flex;
+        min-width: 1200px;
+    }
+
+    .left {
+        width: 200px;
+        /*float: left;*/
+        height: 100%;
+        background-color: #28a4c9;
+        /*margin-left: -200px;*/
+    }
+
+    .right {
+        width: 100%;
+        float: left;
+        height: 100%;
+        background-color: aquamarine;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        flex-shrink:1;
+        min-height: 800px;
+    }
+
+    .pro {
+        height: 280px;
+        background-image: url('bb.PNG');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .bom {
+        width: 100%;
+        height: 100%;
+        background-color: #444444;
+        display: flex;
+        box-sizing: border-box;
+        padding: 8px;
+    }
+</style>
+<body>
+
+<div class="main">
+    <div class="left">
+
+    </div>
+
+    <div class="right">
+        <div class="pro">
+        </div>
+
+        <div class="bom">
+            <div style="flex-grow: 1; background-color: white;margin-right: 4px;">
+
+            </div>
+
+            <div style="flex-grow: 1; background-color: white; margin-left: 4px;">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

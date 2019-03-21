@@ -1,0 +1,54 @@
+body,html{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.main{
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    outline: 4px solid #ccffff;
+    outline-offset: -4px;
+    /*background-color: #ffffcc;*/
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    margin-top: 15%;
+    flex-direction: column;
+}
+.title p{
+    font-size: 22px;margin: 0; color: #333;
+}
+#sp1{
+    color: #4285F4;
+}
+#sp2{
+    color: #EA4335;
+}
+#sp3{
+    color: #FBBC05;
+}
+#sp4{
+    color: #34A853;
+}
+#sp5{
+    color: #EA4335;
+}
+
+ul {
+    padding: 0;
+}
+ul li{
+    list-style: none;
+    text-align: center;
+    line-height: 30px;
+    color: deepskyblue;
+}

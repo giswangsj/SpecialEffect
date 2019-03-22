@@ -3,19 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>FreeDoor</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="description" content="FreeDoor，完全免费的，无限流量的翻墙神器">
     <link rel="stylesheet" href="css/freedoor.css">
+    <script>
+        function download(flag) {
+            if (flag == 1) {
+                window.open("welfare.html");
+            } else {
+                alert('暂不支持')
+            }
+        }
+    </script>
 </head>
 <body>
 
 <div class="main">
 
     <div class="title">
-        <img src="img/logo.png" style="width: 140px;height: 140px;"/>
+        <img src="img/door.png"/>
         <div>
             <span id="sp1">F</span><span id="sp2">r</span><span id="sp3">ee</span><span id="sp1">D</span><span id="sp4">oo</span><span
                 id="sp5">r</span>
         </div>
-        <p>网络加速器</p>
+        <p>翻墙神器</p>
     </div>
     <div>
         <ul>
@@ -26,10 +37,30 @@
         </ul>
     </div>
 
-    <div style="position: relative;  bottom: 0;">
-        <p>
-            是您追美剧，玩吃鸡，聊脸书，设计开发，科研留学的最佳选择，没有之一！！！
-        </p>
+    <div class="download_div">
+        <div class="download download_and" onclick="download(1)">
+            <img src="img/android.png"/>
+            <span>Android下载</span>
+        </div>
+        <div class="download download_ios" onclick="download(2)">
+            <img src="img/ios.png"/>
+            <span>IOS下载</span>
+        </div>
+    </div>
+
+    <div class="logo">
+        <img id="img1" src="svg/google.svg"/>
+        <img id="img2" src="svg/youtube.svg"/>
+        <img id="img3" src="svg/facebook.svg"/>
+        <img id="img4" src="svg/linkedin.svg"/>
+        <img id="img5" src="svg/pinterest.svg"/>
+        <img id="img6" src="svg/twitter.svg"/>
+    </div>
+
+    <div class="tip">
+        <span>
+            追美剧，玩吃鸡，聊脸书，设计开发，科研留学的最佳选择，
+        </span><span style="color: red;font-style: initial; font-size: 18px;">没有之一！！！</span>
     </div>
 </div>
 

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/common.css?ts=123">
+    <link rel="stylesheet" href="css/login.css?ts=123">
+    <script src="js/common.js?ts=123"></script>
+
+    <script>
+        $(function () {
+            let token = localStorage.getItem("uid");
+            $("#username").focus(function () {
+                $("#username").css("border", "1px solid #626ED4")
+            });
+            $("#username").blur(function () {
+                $("#username").css("border", "1px solid #DDDDDD")
+            });
+
+            $("#password").focus(function () {
+                $("#password").css("border", "1px solid #626ED4")
+            });
+            $("#password").blur(function () {
+                $("#password").css("border", "1px solid #DDDDDD")
+            });
+
+            initFontSize();
+        })
+
+        function login() {
+            let username = $("#username").val().trim();
+            let password = $("#password").val().trim();
+            if (username == "" || password == "") {
+                alert("用户名和密码不能为空");
+                return;
+            }
+            let param = {'userName': username, 'passWord': password};
+            $.ajax({
+                url: "http://192.168.86.20:4060/AdPlant-app/api/mobile/login/login",
+                data: JSON.stringify(param),
+                type: "POST",
+                contentType: "application/json",
+                success: function (data) {
+                    setToken(data.result.user.token);
+                    setCorpId(data.result.corp.id);
+                    window.location.href = "register.html"+window.location.search;
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div>
+    <img src="img/login_top.png" style="width: 100%;">
+    <div style="margin: 36px auto 0 auto;width: 80%;">
+        <input id="username" name="username" class="lg_input" placeholder="请输入账号"/>
+        <input id="password" name="password" class="lg_input" placeholder="请输入密码" type="password"/>
+    </div>
+    <div style="margin: 36px auto 0 auto;width: 62%;">
+        <button class="btnLogin" onclick="login()">登录</button>
+    </div>
+</div>
+</body>
+</html>

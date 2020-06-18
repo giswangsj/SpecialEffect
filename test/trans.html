@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>翻译测试</title>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("language", "1");
+
+        function initialize() {
+            var text = document.getElementById("text").innerHTML;
+            google.language.detect(text,
+                function (result) {
+                    if (!result.error && result.language) {
+                        google.language.translate(text, result.language, "en",
+                            function (result) {
+                                var translated = document.getElementById("translation");
+                                if (result.translation) {
+                                    translated.innerHTML = result.translation;
+                                }
+                            });
+                    }
+                });
+        }
+
+        google.setOnLoadCallback(initialize);
+    </script>
+</head>
+<body id="translation">
+<p id="text">汉语</p>
+
+<div>
+    这里是网页的内容
+</div>
+
+</body>
+</html>

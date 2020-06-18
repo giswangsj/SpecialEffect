@@ -1,0 +1,10 @@
+.lg_input{
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(221, 221, 221, 1);
+    border-radius: 4px;
+    width: 100%;
+    padding: 4% 3% 4% 3%;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 1000px white inset !important;
+    margin-top: 36px;
+}

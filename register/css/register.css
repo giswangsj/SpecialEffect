@@ -20,7 +20,7 @@ span {
 }
 
 .content_div > div {
-    margin: 18px 0;
+    padding: 10px 0;
 }
 
 .item_value {
@@ -52,4 +52,9 @@ span {
 
 .requiredField{
     color: red;
+}
+
+#logout{
+    margin-left: 10%;
+    color: deepskyblue;
 }

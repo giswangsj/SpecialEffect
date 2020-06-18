@@ -1,5 +1,6 @@
 function getBaseUrl() {
     return "http://192.168.86.20:4060/AdPlant-app/";
+    // return "http://59.110.163.188:4050/AdPlant-app/";
 }
 
 function initFontSize() {
@@ -75,6 +76,7 @@ function isLogin() {
 function logout() {
     if (isLogin()) {
         delToken();
+        window.location.href = "login.html" + window.location.search;
     }
 }
 
@@ -107,6 +109,19 @@ function getCorpId() {
 
 function setCorpId(corpId) {
     localStorage.setItem("corpId", corpId);
+}
+
+function getAccount() {
+    let account = localStorage.getItem("account");
+    if (account !== null && account !== undefined) {
+        return account;
+    } else {
+        return "";
+    }
+}
+
+function setAccount(account) {
+    localStorage.setItem("account", account);
 }
 
 /**

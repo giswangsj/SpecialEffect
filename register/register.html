@@ -77,6 +77,8 @@
                 mode = $('input[name="mode"]:checked').val();
                 console.log(mode);
             })
+
+            $("#account").text(getAccount())
         })
 
         getDeviceType();
@@ -89,6 +91,15 @@
 <body>
 <div style="box-sizing: border-box">
     <div class="content_div">
+        <div>
+            <span class="item_title">账号:</span>
+            <div class="item_value">
+                <span id="account"></span>
+
+                <span id="logout" onclick="logout()">退出登录</span>
+            </div>
+        </div>
+
         <div>
             <span class="item_title">分辨率:</span>
             <div class="item_value">

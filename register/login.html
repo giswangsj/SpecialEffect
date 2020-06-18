@@ -11,7 +11,6 @@
 
     <script>
         $(function () {
-            let token = localStorage.getItem("uid");
             $("#username").focus(function () {
                 $("#username").css("border", "1px solid #626ED4")
             });
@@ -20,10 +19,10 @@
             });
 
             $("#password").focus(function () {
-                $("#password").css("border", "1px solid #626ED4")
+                $("#div_pwd").css("border", "1px solid #626ED4")
             });
             $("#password").blur(function () {
-                $("#password").css("border", "1px solid #DDDDDD")
+                $("#div_pwd").css("border", "1px solid #DDDDDD")
             });
 
             initFontSize();
@@ -38,16 +37,34 @@
             }
             let param = {'userName': username, 'passWord': password};
             $.ajax({
-                url: "http://192.168.86.20:4060/AdPlant-app/api/mobile/login/login",
+                url: getBaseUrl() + "api/mobile/login/login",
                 data: JSON.stringify(param),
                 type: "POST",
                 contentType: "application/json",
                 success: function (data) {
-                    setToken(data.result.user.token);
-                    setCorpId(data.result.corp.id);
-                    window.location.href = "register.html"+window.location.search;
+                    if (data.code === "-1") {
+                        alert(data.msg);
+                    } else {
+                        console.log(data);
+                        setToken(data.result.user.token);
+                        setCorpId(data.result.corp.id);
+                        setAccount(data.result.user.account);
+                        window.location.href = "register.html" + window.location.search;
+                    }
                 }
             });
+        }
+
+        function changeVisible() {
+            // $("#password").attr("type", "text")
+            let cur = $("#password").attr("type");
+            if (cur === "password") {
+                $("#password").attr("type", "text");
+                $("#img_ch_pwd").attr("src","img/show_pwd.svg");
+            } else {
+                $("#password").attr("type", "password")
+                $("#img_ch_pwd").attr("src","img/hide_pwd.svg");
+            }
         }
     </script>
 </head>
@@ -55,8 +72,14 @@
 <div>
     <img src="img/login_top.png" style="width: 100%;">
     <div style="margin: 36px auto 0 auto;width: 80%;">
-        <input id="username" name="username" class="lg_input" placeholder="请输入账号"/>
-        <input id="password" name="password" class="lg_input" placeholder="请输入密码" type="password"/>
+        <div>
+            <input id="username" name="username" class="lg_input" placeholder="请输入账号"/>
+        </div>
+        <div id="div_pwd">
+            <input id="password" name="password" class="lg_pwd" placeholder="请输入密码" type="password"
+                   style="display: inline"/>
+            <img id="img_ch_pwd" onclick="changeVisible()" src="img/hide_pwd.svg">
+        </div>
     </div>
     <div style="margin: 36px auto 0 auto;width: 62%;">
         <button class="btnLogin" onclick="login()">登录</button>

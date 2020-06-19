@@ -10,6 +10,7 @@ function getDeviceType() {
         type: "POST",
         contentType: "application/json",
         success: function (data) {
+            console.log(data);
             let datas = data.result.list;
             deviceTypes = datas;
             $("#selector1").empty();
@@ -23,9 +24,9 @@ function getDeviceType() {
 }
 
 // 显示样式
-function getDisplayStyle() {
+function getDisplayStyle(screenId) {
     let corpId = getCorpId();
-    let param = {'currPage': 1, 'pageSize': 1000, 'corpId': corpId};
+    let param = {'currPage': 1, 'pageSize': 1000, 'corpId': corpId, 'screenId': screenId};
     $.ajax({
         url: getBaseUrl() + "api/mobile/display/queryList",
         data: JSON.stringify(param),

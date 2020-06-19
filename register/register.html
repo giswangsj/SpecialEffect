@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="css/register.css?ts=123">
-    <link rel="stylesheet" href="css/common.css?ts=123">
-    <link href="css/jquery.searchableSelect.css?ts=123" rel="stylesheet" type="text/css">
-    <script src="js/register.js?ts=123"></script>
-    <script src="js/common.js?ts=123"></script>
-    <script src="js/jquery.searchableSelect.js?ts=123"></script>
+    <link rel="stylesheet" href="css/register.css?ts=124">
+    <link rel="stylesheet" href="css/common.css?ts=124">
+    <link href="css/jquery.searchableSelect.css?ts=1241" rel="stylesheet" type="text/css">
+    <script src="js/register.js?ts=124"></script>
+    <script src="js/common.js?ts=124"></script>
+    <script src="js/jquery.searchableSelect.js?ts=124"></script>
     <!--<link href="https://cdn.bootcdn.net/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.css" rel="stylesheet">-->
 
     <script>
@@ -34,7 +34,8 @@
             let width = getUrlParam("width");
             let height = getUrlParam("height");
 
-            $("#resolution").text("宽：" + width + "-高：" + height);
+            $("#width").text("宽：" + width);
+            $("#height").text("高：" + height);
 
             initFontSize();
 
@@ -44,6 +45,7 @@
                 if (_id !== "-1") {
                     deviceTypeId = deviceTypes[_id].id
                     $("#deviceResolution").text("所选型号的分辨率为:" + deviceTypes[_id].screenName)
+                    getDisplayStyle(deviceTypes[_id].screenId);
                 } else {
                     deviceTypeId = -1;
                 }
@@ -82,7 +84,6 @@
         })
 
         getDeviceType();
-        getDisplayStyle();
         getIndustry();
         getProvince();
 
@@ -103,7 +104,7 @@
         <div>
             <span class="item_title">分辨率:</span>
             <div class="item_value">
-                <span id="resolution"></span>
+                <span id="width"></span><span style="margin-left: 10%;" id="height"></span>
             </div>
         </div>
 
@@ -130,14 +131,14 @@
             <span class="item_title">显示样式:</span>
             <div class="item_value">
                 <select id="selector2">
-                    <option value="-1">请选择</option>
+                    <option value="-1">请先选择设备型号</option>
                 </select>
             </div>
             <span class="requiredField">*</span>
         </div>
 
         <div>
-            <span class="item_title">运行方式:</span>
+            <span class="item_title">运营方式:</span>
             <div class="item_value">
                 <span><input name="mode" type="radio" value="1" checked/>广告模式 </span>
                 <span><input name="mode" type="radio" value="2"/>信息推送模式 </span>
@@ -190,10 +191,9 @@
                 <input id="locNote" class="reg_input" placeholder="请输入备注"/>
             </div>
         </div>
-
     </div>
 
-    <div style="margin: 36px auto 0 auto;width: 62%;">
+    <div style="margin: 36px auto 12px auto;width: 62%;">
         <button class="btnLogin" onclick="regist()">注册</button>
     </div>
 </div>

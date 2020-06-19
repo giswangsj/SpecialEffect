@@ -5,9 +5,9 @@
     <title>登录</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/common.css?ts=123">
-    <link rel="stylesheet" href="css/login.css?ts=123">
-    <script src="js/common.js?ts=123"></script>
+    <link rel="stylesheet" href="css/common.css?ts=124">
+    <link rel="stylesheet" href="css/login.css?ts=124">
+    <script src="js/common.js?ts=124"></script>
 
     <script>
         $(function () {
@@ -49,7 +49,8 @@
                         setToken(data.result.user.token);
                         setCorpId(data.result.corp.id);
                         setAccount(data.result.user.account);
-                        window.location.href = "register.html" + window.location.search;
+                        // window.location.href = "register.html" + window.location.search;
+                        window.location.replace("register.html" + window.location.search);
                     }
                 }
             });
